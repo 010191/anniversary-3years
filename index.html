@@ -7,21 +7,35 @@
 <style>
   body {
     font-family: "Sarabun", sans-serif;
-    background: #f0f0f0;
-    margin: 0; padding: 0;
+    background: #f9f0f8;
+    margin: 0; padding: 20px;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
+    color: #b30059;
+  }
+  .message-container {
+    max-width: 400px;
+    text-align: center;
+    margin: 20px auto 10px;
+    line-height: 1.5;
+    white-space: pre-line;
+    font-size: 16px;
+  }
+  audio {
+    margin-top: 10px;
+    outline: none;
   }
   .slideshow-container {
-    width: 600px;
-    max-width: 90vw;
+    width: 90vw;
+    max-width: 600px;
     position: relative;
     overflow: hidden;
     border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 15px rgba(179,0,89,0.3);
     background: white;
+    margin-top: 30px;
   }
   .slides {
     display: flex;
@@ -29,18 +43,16 @@
     width: 100%;
   }
   .slides img {
-    width: 600px;
-    max-width: 90vw;
+    width: 100%;
     border-radius: 15px;
     user-select: none;
   }
-  /* ปุ่มลูกศร */
   .arrow {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     font-size: 2.5rem;
-    color: rgba(0,0,0,0.4);
+    color: rgba(179,0,89,0.4);
     cursor: pointer;
     user-select: none;
     padding: 5px 10px;
@@ -49,7 +61,7 @@
     transition: color 0.3s ease;
   }
   .arrow:hover {
-    color: #111;
+    color: #b30059;
   }
   .arrow-left {
     left: 10px;
@@ -60,19 +72,22 @@
 </style>
 </head>
 <body>
-<div style="max-width: 300px; margin: 40px auto; font-family: 'Sarabun', sans-serif; text-align: center; color: #b30059;">
-  <img 
-    src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=https://010191.github.io/anniversary-3years/" 
-    alt="QR Code"
-    style="border-radius: 15px; box-shadow: 0 4px 12px rgba(179,0,89,0.3);"
-  />
-  <p style="margin-top: 20px; font-size: 16px; line-height: 1.5; white-space: pre-line;">
-    ขอบคุณที่เดินเคียงข้างกันมาตลอด 3 ปีนี้
-    เราผ่านทั้งรอยยิ้ม น้ำตา และช่วงเวลาพิเศษมาด้วยกัน
-    ขอให้ความรักของเราเติบโต แข็งแรง และสวยงามยิ่งขึ้นในทุกๆ วัน 💖
-    รักคุณแฟนเสมอ 💑
-  </p>
+
+<!-- ข้อความขอบคุณ -->
+<div class="message-container">
+  ขอบคุณที่เดินเคียงข้างกันมาตลอด 3 ปีนี้
+  เราผ่านทั้งรอยยิ้ม น้ำตา และช่วงเวลาพิเศษมาด้วยกัน
+  ขอให้ความรักของเราเติบโต แข็งแรง และสวยงามยิ่งขึ้นในทุกๆ วัน 💖
+  รักคุณแฟนเสมอ 💑
 </div>
+
+<!-- เพลงครบรอบ -->
+<audio controls autoplay loop>
+  <source src="https://cdn.pixabay.com/download/audio/2023/05/26/audio_06159b73fc.mp3?filename=soft-lullaby-7406.mp3" type="audio/mpeg" />
+  เพลงของคุณไม่รองรับเบราว์เซอร์นี้
+</audio>
+
+<!-- สไลด์โชว์รูปด้านล่าง -->
 <div class="slideshow-container">
   <div class="slides" id="slides">
     <img src="f/IMG_8657.jpg" alt="รูป1" />
@@ -103,7 +118,6 @@
     slides.style.transform = `translateX(${-index * 100}%)`;
   }
 
-  // ปุ่มลูกศร
   document.getElementById('prev').addEventListener('click', () => {
     showSlide(index - 1);
     resetTimer();
@@ -113,7 +127,6 @@
     resetTimer();
   });
 
-  // สไลด์อัตโนมัติทุก 3 วินาที
   let timer = setInterval(() => {
     showSlide(index + 1);
   }, 3000);
@@ -125,7 +138,6 @@
     }, 3000);
   }
 
-  // เริ่มแสดงรูปแรก
   showSlide(0);
 </script>
 
